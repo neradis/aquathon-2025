@@ -36,13 +36,13 @@ def retrieve_conn_string(in_colab: bool = False) -> str:
         dotenv.load_dotenv(os.path.join(this_dir, '.env'))
         return os.environ['SCALINGO_PG_CONN_STRING']
 
-def upload_to_db(df: DataFrame, name: str, schema: str | None = None) -> None:
-    conn_str = retrieve_conn_string()
+def upload_to_db(df: DataFrame, name: str, schema: str | None = None, in_colab: bool = False) -> None:
+    conn_str = retrieve_conn_string(in_colab)
     engine = sqlalchemy.create_engine(conn_str, pool_size=4)
     production_vosges.to_sql('production', engine, schema='vosges', if_exists='replace', chunksize=100)
 
 def load_from_db(in_colab: bool = False) -> DataFrame:
-    conn_str = retrieve_conn_string()
+    conn_str = retrieve_conn_string(in_colab)
     engine = sqlalchemy.create_engine(conn_str, pool_size=4)
     return pd.read_sql('SELECT * FROM vosges.production', engine)
 
