@@ -1,0 +1,19 @@
+[project]
+name = "roseau-data-augmentation"
+version = "0.0.0"
+description = "Data augmentation and forecasting utilities for water consumption data"
+requires-python = ">=3.10.0"
+
+# Converted from requirements.txt
+# If you later want to pin versions, adjust the specifiers below accordingly.
+dependencies = [
+  "sqlalchemy",
+  "psycopg2-binary",
+  "pandas",
+  "seaborn",
+  "jupyterlab",
+  "statsmodels",
+  "sktime",
+  "autots",
+  "pmdarima",
+]
